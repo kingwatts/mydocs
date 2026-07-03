@@ -5,7 +5,10 @@ import { createRoot } from "react-dom/client";
 import "./main.css";
 import "@fontsource/vazirmatn";
 
-const router = createRouter({ routeTree });
+const router = createRouter({
+  routeTree,
+  basepath: import.meta.env.BASE_URL,
+});
 
 function App() {
   return (
