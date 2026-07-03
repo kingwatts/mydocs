@@ -5,10 +5,12 @@ import { tanstackRouter } from "@tanstack/router-vite-plugin";
 import { version } from "./package.json";
 
 const repoName = process.env.GITHUB_REPOSITORY?.split("/").at(-1);
+const isUserSite = repoName?.endsWith(".github.io");
+const base = !repoName || isUserSite ? "/" : `/${repoName}/`;
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: repoName ? `/${repoName}/` : "/",
+  base,
   plugins: [tanstackRouter(), react(), tailwindcss()],
   define: {
     __APP_VERSION__: JSON.stringify(version),
